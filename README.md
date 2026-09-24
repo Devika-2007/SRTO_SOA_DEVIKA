@@ -1,58 +1,54 @@
-# SRTO - Smart Resource & Timetable Optimization
+# Student Information & Academic Performance Management Microservices System
 
-![Java](https://img.shields.io/badge/Java-21-orange.svg)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen.svg)
-![Build](https://img.shields.io/badge/Build-Maven-blue.svg)
+![Java 21](https://img.shields.io/badge/Java-21-orange.svg)
+![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen.svg)
+![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2023.0.0-blue.svg)
 
-SRTO (Smart Resource & Timetable Optimization) is an enterprise-grade Spring Boot 3.x platform designed for educational institutions to intelligently generate conflict-free timetables, manage room/lab utilization, optimize faculty workload, and streamline academic infrastructure.
-
----
-
-## 🚀 Key Modules & Capabilities
-
-- **Authentication & Role-Based Security**: Admin, Faculty, and Student access controls.
-- **Executive Dashboard**: Real-time stats on departments, faculty, rooms, timetable entries, and conflict warnings.
-- **Timetable Optimization Engine**: Dynamic collision-free schedule generator with conflict detection (room double-booking, faculty clash, batch overlap).
-- **Master Data Management**:
-  - Departments Management
-  - Courses (Degree Programs) Management
-  - Subjects & Lab Requirements Management
-  - Faculty Directory & Max Workload Limits
-  - Classroom & Lab Infrastructure Register
-  - Academic Structure (Years, Semesters, Student Batches)
-- **Analytics & Notifications**: System notifications feed, audit logs, and resource utilization reports.
+An enterprise-grade, lightweight Spring Cloud microservices architecture for Student Management, Attendance Tracking, Academic Performance Results, JWT Authentication, Service Discovery, and API Routing.
 
 ---
 
-## 🛠️ Tech Stack
+## 🏗️ Architecture & Service Topology
 
-- **Backend**: Java 21, Spring Boot 3.2.3, Spring MVC, Spring Data JPA, Spring Security
-- **Frontend**: Thymeleaf, Bootstrap 5, FontAwesome 6, Custom Dark/Glassmorphism CSS
-- **Database**: Dual setup (H2 In-Memory for instant STS zero-config launch + MySQL 8+ production ready)
-- **Build Tool**: Maven / Embedded Maven Wrapper (`mvnw`)
+| Microservice Module | Port | Technology Stack | Description |
+| :--- | :---: | :--- | :--- |
+| **`eureka-server`** | `8761` | Netflix Eureka Server | Service Discovery & Registry |
+| **`api-gateway`** | `8080` | Spring Cloud Gateway | API Routing & Client Load Balancing |
+| **`auth-service`** | `8081` | Spring Security + JWT | Authentication & User Management (`Users` table) |
+| **`student-service`** | `8082` | Spring Data JPA | Student Profile & Details (`Students` table) |
+| **`attendance-service`** | `8083` | Spring Data JPA + RestTemplate | Attendance Marking & History (`Attendance` table) |
+| **`result-service`** | `8084` | Spring Data JPA + RestTemplate | Academic Marks & Grades (`Results` table) |
 
 ---
 
-## 🏁 Quick Start & Run Instructions
+## ⚡ API Endpoints & Routes (via Gateway at Port 8080)
 
-### Prerequisites
-- JDK 21+ installed on PATH
-- Spring Tool Suite (STS) or standard Java IDE
+### 🔑 Authentication Service (`/api/auth`)
+- `POST /api/auth/login` - Authenticate user & get JWT token
+- `POST /api/auth/register` - Register new user account
+- `GET /api/auth/validate?token=...` - Validate JWT token
 
-### Running with Maven Wrapper
-Execute in terminal:
-```bash
-./mvnw spring-boot:run
-```
-Or on Windows:
-```cmd
-mvnw.cmd spring-boot:run
-```
+### 🎓 Student Service (`/api/students`)
+- `GET /api/students` - Get all students
+- `GET /api/students/{id}` - Get student by ID
+- `POST /api/students` - Register a new student
+- `PUT /api/students/{id}` - Update student profile
+- `DELETE /api/students/{id}` - Remove student
 
-### Accessing the Application
-- **URL**: `http://localhost:8080`
-- **Login Page**: `http://localhost:8080/login`
-- **Default Credentials**:
-  - **Username**: `admin`
-  - **Password**: `admin123`
-- **H2 In-Memory Console**: `http://localhost:8080/h2-console` (JDBC URL: `jdbc:h2:mem:srtodb`, User: `sa`, Password: empty)
+### 📅 Attendance Service (`/api/attendance`)
+- `POST /api/attendance` - Mark student attendance
+- `GET /api/attendance/student/{studentId}` - Attendance history
+- `GET /api/attendance/student/{studentId}/percentage` - Calculate percentage
+
+### 📊 Result Service (`/api/results`)
+- `POST /api/results` - Add subject marks
+- `GET /api/results/student/{studentId}` - Get academic scorecard & grades
+
+---
+
+## 🛢️ Database Tables
+
+1. **`users`**: `id`, `username`, `password`, `email`, `role`
+2. **`students`**: `id`, `rollNumber`, `name`, `email`, `department`, `academicYear`, `phone`
+3. **`attendance`**: `id`, `studentId`, `date`, `subject`, `status`
+4. **`results`**: `id`, `studentId`, `subject`, `marksObtained`, `maxMarks`, `grade`, `semester`
