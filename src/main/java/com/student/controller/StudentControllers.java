@@ -1,8 +1,11 @@
 package com.student.controller;
 
-import com.student.config.SecurityConfig.*;
+import com.student.config.SecurityConfig.JwtUtil;
 import com.student.dto.StudentDtos.*;
-import com.student.entity.StudentEntities.*;
+import com.student.entity.Attendance;
+import com.student.entity.Result;
+import com.student.entity.Student;
+import com.student.entity.User;
 import com.student.service.StudentServices.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

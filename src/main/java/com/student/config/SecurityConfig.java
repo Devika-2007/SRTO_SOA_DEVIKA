@@ -1,11 +1,16 @@
 package com.student.config;
 
-import com.student.entity.StudentEntities.*;
-import com.student.repository.StudentRepositories.*;
+import com.student.entity.Attendance;
+import com.student.entity.Result;
+import com.student.entity.Student;
+import com.student.entity.User;
+import com.student.repository.AttendanceRepository;
+import com.student.repository.ResultRepository;
+import com.student.repository.StudentRepository;
+import com.student.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +28,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -53,7 +57,7 @@ public class SecurityConfig {
             .headers(headers -> headers.frameOptions(frame -> frame.disable()))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/css/**", "/js/**", "/h2-console/**", "/login", "/api/auth/**").permitAll()
-                .anyRequest().permitAll() // Permit access for simple web client & API testing
+                .anyRequest().permitAll()
             )
             .formLogin(form -> form
                 .loginPage("/login")

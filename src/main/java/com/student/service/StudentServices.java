@@ -1,7 +1,13 @@
 package com.student.service;
 
-import com.student.entity.StudentEntities.*;
-import com.student.repository.StudentRepositories.*;
+import com.student.entity.Attendance;
+import com.student.entity.Result;
+import com.student.entity.Student;
+import com.student.entity.User;
+import com.student.repository.AttendanceRepository;
+import com.student.repository.ResultRepository;
+import com.student.repository.StudentRepository;
+import com.student.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,6 +16,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.*;
 
+@Service
+@RequiredArgsConstructor
+@Transactional
 public class StudentServices {
 
     public interface AuthService {
