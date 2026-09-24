@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "8a3f4e2b-1a2b-4c3d-9e4f-5a6b7c8d9e0f",
+		"name": "Student Information & Academic Performance System",
+		"description": "Postman API Collection for testing Authentication, Student Management, Attendance Tracking, and Academic Results.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"teacher1\",\n  \"password\": \"teacher123\",\n  \"email\": \"teacher1@university.edu\",\n  \"role\": \"TEACHER\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "auth", "register"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Student Management",
+			"item": [
+				{
+					"name": "Get All Students",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/students",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "students"]
+						}
+					}
+				},
+				{
+					"name": "Get Student by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/students/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "students", "1"]
+						}
+					}
+				},
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rollNumber\": \"CS2025-03\",\n  \"name\": \"Alice Johnson\",\n  \"email\": \"alice.j@university.edu\",\n  \"department\": \"Computer Science\",\n  \"academicYear\": \"3rd Year\",\n  \"phone\": \"+1-555-0194\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/students",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "students"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Attendance Tracking",
+			"item": [
+				{
+					"name": "Mark Attendance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"studentId\": 1,\n  \"date\": \"2026-09-24\",\n  \"subject\": \"Database Systems\",\n  \"status\": \"PRESENT\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/attendance",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "attendance"]
+						}
+					}
+				},
+				{
+					"name": "Get Attendance Percentage",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/attendance/student/1/percentage",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "attendance", "student", "1", "percentage"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Academic Results",
+			"item": [
+				{
+					"name": "Add Subject Marks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"studentId\": 1,\n  \"subject\": \"Database Management Systems\",\n  \"marksObtained\": 95,\n  \"maxMarks\": 100,\n  \"semester\": \"Semester 5\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/results",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "results"]
+						}
+					}
+				},
+				{
+					"name": "Get Student Results",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/results/student/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "results", "student", "1"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

@@ -4,48 +4,47 @@
 ![Spring Boot 3](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen.svg)
 ![Architecture](https://img.shields.io/badge/Architecture-Monolithic-blue.svg)
 
-A clean, enterprise-grade single monolithic Spring Boot 3.x application managing Student Profiles, Attendance Tracking, Academic Performance Results, and JWT Authentication.
+An enterprise-grade, clean, single monolithic Spring Boot 3.x platform that manages Student Profiles, Attendance Tracking, Academic Performance Results, and JWT Security.
 
 ---
 
-## 🚀 Key Modules (Logical Packages within Single Project)
+## 🏛️ System Overview & Core Modules
 
-- **`com.student.config`**: Security configuration, password encoding, JWT utilities, database initialization.
-- **`com.student.controller`**: MVC Controllers (`WebMvcController`) & REST Controllers (`StudentControllers` for Auth, Student, Attendance, Result APIs).
-- **`com.student.dto`**: Data Transfer Objects (`StudentDtos`).
-- **`com.student.entity`**: JPA Entities (`User`, `Student`, `Attendance`, `Result`).
-- **`com.student.repository`**: JPA Data Repositories (`StudentRepositories`).
-- **`com.student.service`**: Business Service Contracts & Implementations (`StudentServices`).
+- **Authentication Module**: JWT Bearer token generation, login validation, and user registration.
+- **Student Module**: Complete student profile directory & registration.
+- **Attendance Module**: Daily class attendance marking & percentage calculations.
+- **Result Module**: Subject marks entry, automated letter grade calculation (`A+`, `A`, `B+`, `B`, `C`, `F`), and academic scorecards.
 
 ---
 
-## 🛢️ Database Schema (`users`, `students`, `attendance`, `results`)
+## 🚀 Running the Project
 
-1. **`users`**: `id`, `username`, `password`, `email`, `role`
-2. **`students`**: `id`, `rollNumber`, `name`, `email`, `department`, `academicYear`, `phone`
-3. **`attendance`**: `id`, `studentId`, `date`, `subject`, `status`
-4. **`results`**: `id`, `studentId`, `subject`, `marksObtained`, `maxMarks`, `grade`, `semester`
+### Method 1: Command Prompt (CMD) Execution
+Run the compiled executable JAR file directly:
+```cmd
+java -jar target/student-management-system-1.0.0.jar
+```
+
+### Method 2: Spring Tool Suite (STS) / IDE Execution
+1. Open STS $\rightarrow$ **File** $\rightarrow$ **Import...** $\rightarrow$ **Existing Maven Projects**.
+2. Select directory `SRTO DEVIKA`.
+3. Right-click `com.student.StudentManagementApplication` $\rightarrow$ **Run As** $\rightarrow$ **Spring Boot App**.
 
 ---
 
-## ⚡ API Endpoints (All running on http://localhost:8080)
+## 🌐 Web Interface & Endpoints
 
-### 🔑 Authentication Module
-- `POST /api/auth/login` - Authenticate & generate JWT token
-- `POST /api/auth/register` - Register new user
+- **Web Dashboard**: [http://localhost:8080/](http://localhost:8080/)
+- **Login View**: [http://localhost:8080/login](http://localhost:8080/login) *(User: `admin` | Password: `admin123`)*
+- **H2 Database Console**: [http://localhost:8080/h2-console](http://localhost:8080/h2-console) *(JDBC URL: `jdbc:h2:mem:studentdb`)*
 
-### 🎓 Student Module
-- `GET /api/students` - List all students
-- `GET /api/students/{id}` - Get student profile
-- `POST /api/students` - Register new student
-- `PUT /api/students/{id}` - Update student profile
-- `DELETE /api/students/{id}` - Delete student
+---
 
-### 📅 Attendance Module
-- `POST /api/attendance` - Mark student attendance
-- `GET /api/attendance/student/{studentId}` - View student attendance history
-- `GET /api/attendance/student/{studentId}/percentage` - Calculate attendance percentage
+## 🧪 Postman API Testing Collection
 
-### 📊 Result Module
-- `POST /api/results` - Add subject marks
-- `GET /api/results/student/{studentId}` - View academic performance scorecard
+A pre-configured Postman Collection file `postman_collection.json` is included in the project root.
+
+### Importing to Postman:
+1. Open Postman $\rightarrow$ Click **Import**.
+2. Select `postman_collection.json` from this project folder.
+3. Test requests for Auth, Students, Attendance, and Results!

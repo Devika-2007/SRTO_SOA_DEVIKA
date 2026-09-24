@@ -1,8 +1,14 @@
 C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\controller\WebMvcController.java
 C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\service\StudentServices.java
-C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\controller\StudentControllers.java
-C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\entity\StudentEntities.java
-C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\repository\StudentRepositories.java
 C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\config\SecurityConfig.java
 C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\dto\StudentDtos.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\repository\UserRepository.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\repository\ResultRepository.java
 C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\StudentManagementApplication.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\entity\User.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\repository\AttendanceRepository.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\controller\StudentControllers.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\entity\Result.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\repository\StudentRepository.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\entity\Attendance.java
+C:\Users\johns\Desktop\SRTO DEVIKA\src\main\java\com\student\entity\Student.java
