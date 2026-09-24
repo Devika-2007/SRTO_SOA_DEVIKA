@@ -27,7 +27,7 @@ This guide provides step-by-step instructions to run the **Student Information &
 
 1. Open Spring Tool Suite (STS).
 2. Click **File** $\rightarrow$ **Import...** $\rightarrow$ **Maven** $\rightarrow$ **Existing Maven Projects** $\rightarrow$ Click **Next**.
-3. Browse to the root directory `C:\Users\johns\Desktop\SRTO DEVIKA` and click **Finish**.
+3. Browse to the root directory `C:\Users\SRTO DEVIKA` and click **Finish**.
 4. In Project Explorer, expand `src/main/java`.
 5. Navigate to `com.student.StudentManagementApplication.java`.
 6. Right-click `StudentManagementApplication.java` $\rightarrow$ **Run As** $\rightarrow$ **Spring Boot App**.
