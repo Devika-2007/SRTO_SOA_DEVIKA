@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('SRTO - Login')}"></head>
+<body class="d-flex align-items-center justify-content-center min-vh-100">
+    <div class="glass-card" style="width: 420px;">
+        <div class="text-center mb-4">
+            <i class="fa-solid fa-microchip fa-3x text-info mb-3"></i>
+            <h3 class="fw-bold">SRTO System</h3>
+            <p class="text-muted small">Smart Resource & Timetable Optimization</p>
+        </div>
+
+        <div th:if="${param.error}" class="alert alert-danger py-2 small" role="alert">
+            Invalid username or password.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success py-2 small" role="alert">
+            Logged out successfully.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="mb-3">
+                <label class="form-label text-muted small">Username or Email</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-dark text-muted border-secondary"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" name="username" class="form-control bg-dark text-light border-secondary" placeholder="admin" required value="admin">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label text-muted small">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-dark text-muted border-secondary"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="password" class="form-control bg-dark text-light border-secondary" placeholder="admin123" required value="admin123">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-info w-100 fw-bold py-2">
+                Sign In to Dashboard
+            </button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <small class="text-muted">Default Admin: <code>admin</code> / <code>admin123</code></small>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">SRTO - Smart Resource & Timetable Optimization</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome 6 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-blue: #38bdf8;
+            --accent-purple: #818cf8;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: rgba(15, 23, 42, 0.95);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 2rem;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .brand-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stat-card {
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .table-dark-custom {
+            --bs-table-bg: transparent;
+            --bs-table-color: var(--text-main);
+            border-color: var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div th:fragment="sidebar(activeTab)">
+        <div class="sidebar">
+            <div class="brand-header">
+                <i class="fa-solid fa-microchip fa-xl text-info"></i>
+                <span class="fs-5 fw-bold bg-gradient text-white">SRTO System</span>
+            </div>
+            <div class="px-3 py-3">
+                <ul class="nav flex-column gap-1">
+                    <li class="nav-item">
+                        <a href="/dashboard" class="nav-link" th:classappend="${activeTab == 'dashboard' ? 'active' : ''}">
+                            <i class="fa-solid fa-chart-pie"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/timetable" class="nav-link" th:classappend="${activeTab == 'timetable' ? 'active' : ''}">
+                            <i class="fa-solid fa-calendar-days"></i> Timetable Generator
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/conflicts" class="nav-link" th:classappend="${activeTab == 'conflicts' ? 'active' : ''}">
+                            <i class="fa-solid fa-triangle-exclamation text-warning"></i> Conflict Detector
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/workload" class="nav-link" th:classappend="${activeTab == 'workload' ? 'active' : ''}">
+                            <i class="fa-solid fa-user-clock"></i> Faculty Workload
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <small class="text-uppercase text-muted fw-bold px-3">Master Data</small>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/departments" class="nav-link" th:classappend="${activeTab == 'departments' ? 'active' : ''}">
+                            <i class="fa-solid fa-building-columns"></i> Departments
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/courses" class="nav-link" th:classappend="${activeTab == 'courses' ? 'active' : ''}">
+                            <i class="fa-solid fa-graduation-cap"></i> Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/subjects" class="nav-link" th:classappend="${activeTab == 'subjects' ? 'active' : ''}">
+                            <i class="fa-solid fa-book"></i> Subjects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/faculty" class="nav-link" th:classappend="${activeTab == 'faculty' ? 'active' : ''}">
+                            <i class="fa-solid fa-chalkboard-user"></i> Faculty
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/classrooms" class="nav-link" th:classappend="${activeTab == 'classrooms' ? 'active' : ''}">
+                            <i class="fa-solid fa-door-open"></i> Rooms & Labs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/academic" class="nav-link" th:classappend="${activeTab == 'academic' ? 'active' : ''}">
+                            <i class="fa-solid fa-layer-group"></i> Academic Structure
+                        </a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <small class="text-uppercase text-muted fw-bold px-3">System</small>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/reports" class="nav-link" th:classappend="${activeTab == 'reports' ? 'active' : ''}">
+                            <i class="fa-solid fa-chart-line"></i> Analytics & Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/settings" class="nav-link" th:classappend="${activeTab == 'settings' ? 'active' : ''}">
+                            <i class="fa-solid fa-gears"></i> System Settings
+                        </a>
+                    </li>
+                    <li class="nav-item mt-4">
+                        <a href="/logout" class="nav-link text-danger">
+                            <i class="fa-solid fa-right-from-bracket"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

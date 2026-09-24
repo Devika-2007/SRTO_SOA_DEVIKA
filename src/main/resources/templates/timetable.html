@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('SRTO - Timetable Generator')}"></head>
+<body>
+    <div th:replace="~{layout :: sidebar('timetable')}"></div>
+
+    <div class="main-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Timetable Generation & Optimization</h2>
+                <p class="text-muted small">AI-Ready Automated Scheduling Engine</p>
+            </div>
+        </div>
+
+        <div th:if="${successMsg}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i><span th:text="${successMsg}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Generator Controls -->
+        <div class="glass-card mb-4">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-sliders me-2 text-info"></i>Run Automated Generator</h5>
+            <form th:action="@{/timetable/generate}" method="post" class="row g-3 align-items-end">
+                <div class="col-md-6">
+                    <label class="form-label text-muted small">Select Target Student Batch</label>
+                    <select name="batchId" class="form-select bg-dark text-light border-secondary" required>
+                        <option value="">-- Choose Batch --</option>
+                        <option th:each="b : ${batches}" th:value="${b.id}" th:text="${b.batchName + ' (' + b.course.name + ')'}"></option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-info fw-bold w-100 py-2">
+                        <i class="fa-solid fa-gears me-2"></i>Execute Optimizer Algorithm
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Schedule Matrix / Entries List -->
+        <div class="glass-card">
+            <h5 class="fw-bold mb-3"><i class="fa-solid fa-calendar-grid me-2 text-primary"></i>Generated Timetable Matrix</h5>
+            <div class="table-responsive">
+                <table class="table table-dark-custom align-middle">
+                    <thead>
+                        <tr class="text-muted small">
+                            <th>Day</th>
+                            <th>Time Window</th>
+                            <th>Subject & Code</th>
+                            <th>Assigned Faculty</th>
+                            <th>Room / Lab</th>
+                            <th>Target Batch</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="e : ${entries}">
+                            <td><span class="badge bg-secondary" th:text="${e.dayOfWeek}">MONDAY</span></td>
+                            <td th:text="${e.startTime + ' - ' + e.endTime}">09:00 - 10:00</td>
+                            <td>
+                                <strong th:text="${e.subject.name}">Data Structures</strong>
+                                <div class="small text-muted" th:text="${e.subject.code}">CS301</div>
+                            </td>
+                            <td th:text="${e.faculty.name}">Prof. Alan Turing</td>
+                            <td><span class="badge bg-dark border" th:text="${e.classroom.roomNumber}">LH-101</span></td>
+                            <td th:text="${e.batch.batchName}">CSE-2025-A</td>
+                            <td><span class="badge bg-info text-dark" th:text="${e.status}">GENERATED</span></td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(entries)}">
+                            <td colspan="7" class="text-center text-muted py-4">No timetable entries generated yet.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

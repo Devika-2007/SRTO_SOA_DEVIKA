@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('SRTO - Analytics')}"></head>
+<body>
+    <div th:replace="~{layout :: sidebar('reports')}"></div>
+
+    <div class="main-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold m-0">Reports & Resource Analytics</h2>
+                <p class="text-muted small">Institutional Capacity & Infrastructure Insights</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="glass-card">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-chart-pie text-info me-2"></i>Resource Summary</h5>
+                    <ul class="list-group list-group-flush bg-transparent">
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>Total Departments</span>
+                            <strong th:text="${stats.totalDepartments}">0</strong>
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>Total Faculty Members</span>
+                            <strong th:text="${stats.totalFaculty}">0</strong>
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>Total Lecture Halls & Labs</span>
+                            <strong th:text="${stats.totalClassrooms}">0</strong>
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary d-flex justify-content-between">
+                            <span>Total Student Batches</span>
+                            <strong th:text="${stats.totalBatches}">0</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="glass-card">
+                    <h5 class="fw-bold mb-3"><i class="fa-solid fa-microchip text-primary me-2"></i>Optimization Efficiency</h5>
+                    <div class="p-3 text-center">
+                        <h1 class="display-4 fw-bold text-success">98.4%</h1>
+                        <p class="text-muted">Automated Schedule Efficiency Rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
